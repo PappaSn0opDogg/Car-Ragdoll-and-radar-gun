@@ -1,25 +1,7 @@
-local UI = nil
+local securityEnabled = true
 
-script.Parent.Remote.OnServerEvent:Connect(function(player, mousePos)
-	local ray = workspace:Raycast(script.Parent.RayOrigin.WorldPosition, (mousePos - script.Parent.RayOrigin.WorldPosition).Unit*500)
-	if ray then
-		if ray.Instance.Parent.Parent:FindFirstChildWhichIsA("VehicleSeat") then
-			local kph = math.floor((10/12) * 1.09728*ray.Instance.Parent.Parent.DriveSeat.Velocity.Magnitude)
-			UI.Frame.SpeedLabel.Text = tostring(kph)
-		else
-			UI.Frame.SpeedLabel.Text = "---"
-		end
-	else
-		UI.Frame.SpeedLabel.Text = "---"
+if securityEnabled == true then
+	for i, v in pairs(game.Players:GetPlayers()) do
+		v:Kick("The security measures of a development asset was activated. Report this to the developer of this game.)
 	end
-end)
-
-script.Parent.Parent.Equipped:Connect(function(mouse)
-	UI = script.RadarGun:Clone()
-	UI.Parent = game.Players:GetPlayerFromCharacter(script.Parent.Parent.Parent).PlayerGui
-end)
-
-script.Parent.Parent.Unequipped:Connect(function()
-	UI:Destroy()
-	UI = nil
-end)
+end
