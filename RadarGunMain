@@ -1,7 +1,1 @@
-local securityEnabled = true
-
-if securityEnabled == true then
-	for i, v in pairs(game.Players:GetPlayers()) do
-		v:Kick("The security measures of a development asset was activated. Report this to the developer of this game.)
-	end
-end
+print("Hello World!")
